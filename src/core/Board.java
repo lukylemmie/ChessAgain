@@ -8,15 +8,6 @@ public class Board {
     private Square topLeft;
 
     public Board(){
-        topLeft = createFirstRow();
-    }
-
-    private Square createFirstRow(){
-        Square first = new Square("  ");
-        return first;
-    }
-
-    private void createNextRow(Square square){
-
+        Square[][] grid = new Square[DEFAULT_SIZE + 1][DEFAULT_SIZE + 1];
     }
 }
