@@ -22,8 +22,9 @@ public class Square {
         this.adjacentSquares = adjacentSquares;
     }
 
-    public Square(Boolean boardEdge){
-
+    public Square(String name, Boolean boardEdge){
+        this.name = name;
+        this.boardEdge = boardEdge;
     }
 
     public void addAdjacent(Square square){

@@ -4,12 +4,54 @@ package core;
  * Created by Andrew on 26/07/2016.
  */
 public class Board {
-    public static final int DEFAULT_SIZE = 8;
+    public static final int DEFAULT_SIZE = 10;
     private Square topLeft;
 
     public Board(){
-        Square[][] grid = new Square[DEFAULT_SIZE + 1][DEFAULT_SIZE + 1];
+        Square[][] grid = new Square[DEFAULT_SIZE][DEFAULT_SIZE];
 
+        for(int i = 0; i < DEFAULT_SIZE; i++){
+            for(int j = 0; j < DEFAULT_SIZE; j++){
+                String name = "";
+                Boolean boardEdge = false;
+                if(i == 0 || i == DEFAULT_SIZE - 1){
+                    name += " ";
+                    boardEdge = true;
+                } else {
+                    name += Character.toString(Character.toChars('a' + i - 1)[0]);
+                }
 
+                if(j == 0 || j == DEFAULT_SIZE - 1){
+                    name += " ";
+                    boardEdge = true;
+                } else {
+                    name += j;
+                }
+
+                grid[i][j] = new Square(name, boardEdge);
+            }
+        }
+
+        for(int i = 0; i < DEFAULT_SIZE; i++){
+            for(int j = 0; j < DEFAULT_SIZE; j++){
+                Square up = null;
+                Square right = null;
+                Square down = null;
+                Square left = null;
+                if(i != 0){
+                    up = grid[i - 1][j];
+                }
+                if(j != DEFAULT_SIZE - 1){
+                    right = grid[i][j + 1];
+                }
+                if(i != DEFAULT_SIZE - 1){
+                    down = grid[i + 1][j];
+                }
+                if(j != 0){
+                    left = grid[i][j - 1];
+                }
+                grid[i][j].addAdjacent(up);
+            }
+        }
     }
 }
