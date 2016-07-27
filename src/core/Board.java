@@ -14,18 +14,19 @@ public class Board {
             for(int j = 0; j < DEFAULT_SIZE; j++){
                 String name = "";
                 Boolean boardEdge = false;
-                if(i == 0 || i == DEFAULT_SIZE - 1){
-                    name += " ";
-                    boardEdge = true;
-                } else {
-                    name += Character.toString(Character.toChars('a' + i - 1)[0]);
-                }
 
                 if(j == 0 || j == DEFAULT_SIZE - 1){
                     name += " ";
                     boardEdge = true;
                 } else {
-                    name += j;
+                    name += Character.toString(Character.toChars('a' + j - 1)[0]);
+                }
+
+                if(i == 0 || i == DEFAULT_SIZE - 1){
+                    name += " ";
+                    boardEdge = true;
+                } else {
+                    name += DEFAULT_SIZE - 1 - i;
                 }
 
                 grid[i][j] = new Square(name, boardEdge);
@@ -35,14 +36,11 @@ public class Board {
         for(int i = 0; i < DEFAULT_SIZE; i++){
             for(int j = 0; j < DEFAULT_SIZE; j++){
                 Square up = null;
-                Square right = null;
                 Square down = null;
                 Square left = null;
+                Square right = null;
                 if(i != 0){
                     up = grid[i - 1][j];
-                }
-                if(j != DEFAULT_SIZE - 1){
-                    right = grid[i][j + 1];
                 }
                 if(i != DEFAULT_SIZE - 1){
                     down = grid[i + 1][j];
@@ -50,8 +48,17 @@ public class Board {
                 if(j != 0){
                     left = grid[i][j - 1];
                 }
-                grid[i][j].addAdjacent(up);
+                if(j != DEFAULT_SIZE - 1){
+                    right = grid[i][j + 1];
+                }
+                grid[i][j].setAdjacent(up, down, left, right);
             }
         }
+
+        topLeft = grid[0][0];
+    }
+
+    public void printBoard(){
+        topLeft.printBoard();
     }
 }

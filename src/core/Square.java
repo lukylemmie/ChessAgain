@@ -1,25 +1,27 @@
 package core;
 
+import core.Pieces.Piece;
+
 import java.util.ArrayList;
+import java.util.concurrent.SynchronousQueue;
 
 /**
  * Created by Andrew on 26/07/2016.
  */
 public class Square {
     private int colour = 0;
-    private ArrayList<Square> adjacentSquares = new ArrayList<>();
     private Boolean boardEdge = false;
-    private String name;
+    private String name = null;
     private Boolean validMove = false;
+    private Square up = null;
+    private Square down = null;
+    private Square left = null;
+    private Square right= null;
+    private Piece piece = null;
 
     public Square(String name){
         this.name = name;
         // default square values
-    }
-
-    public Square(String name, ArrayList<Square> adjacentSquares){
-        this.name = name;
-        this.adjacentSquares = adjacentSquares;
     }
 
     public Square(String name, Boolean boardEdge){
@@ -27,12 +29,32 @@ public class Square {
         this.boardEdge = boardEdge;
     }
 
-    public void addAdjacent(Square square){
-        adjacentSquares.add(square);
+    public void setAdjacent(Square up, Square down, Square left, Square right){
+        this.up = up;
+        this.down = down;
+        this.left = left;
+        this.right = right;
     }
 
     public void printBoard(){
-
+//        System.out.print("|" + name);
+        if(!boardEdge){
+            if(piece == null){
+                System.out.print("|  ");
+            } else {
+                piece.print();
+            }
+        } else {
+            System.out.print("|" + name);
+        }
+        if(right != null){
+            right.printBoard();
+        } else {
+            System.out.println("|");
+        }
+        if(left == null && down != null){
+            down.printBoard();
+        }
     }
 
     public int getColour() {
