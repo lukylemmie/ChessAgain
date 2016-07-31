@@ -1,11 +1,15 @@
 package core;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Andrew on 26/07/2016.
  */
 public class Board {
     public static final int DEFAULT_SIZE = 10;
     private Square topLeft;
+    Map<String, Square> map = new HashMap<>();
 
     public Board(){
         Square[][] grid = new Square[DEFAULT_SIZE][DEFAULT_SIZE];
@@ -29,7 +33,11 @@ public class Board {
                     name += DEFAULT_SIZE - 1 - i;
                 }
 
-                grid[i][j] = new Square(name, boardEdge);
+                Square square = new Square(name, boardEdge);
+                grid[i][j] = square;
+                if(!square.isBoardEdge()){
+                    map.put(name, square);
+                }
             }
         }
 
