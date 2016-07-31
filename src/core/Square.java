@@ -93,4 +93,8 @@ public class Square {
     public String toString(){
         return name;
     }
+
+    public void setPiece(Piece piece) {
+        this.piece = piece;
+    }
 }

@@ -1,5 +1,7 @@
 package core;
 
+import core.Pieces.Piece;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,6 +66,10 @@ public class Board {
         }
 
         topLeft = grid[0][0];
+    }
+
+    public void placePiece(String name, Piece piece){
+        map.get(name).setPiece(piece);
     }
 
     public void printBoard(){
