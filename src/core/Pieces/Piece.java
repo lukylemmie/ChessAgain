@@ -29,4 +29,24 @@ public abstract class Piece {
     }
 
     public abstract ArrayList<String> validMoves(Square start);
+
+    public ArrayList<String> leftValidMoves(Square currentSquare, ArrayList<String> validMoves) {
+        if (!currentSquare.getBoardEdge()) {
+            if (!currentSquare.hasPiece()) {
+                validMoves.add(currentSquare.getName());
+                leftValidMoves(currentSquare.getLeft(), validMoves);
+            } else {
+                Piece piece = currentSquare.getPiece();
+                if (piece.getColour() != colour){
+                    validMoves.add(currentSquare.getName());
+                }
+            }
+        }
+
+        return validMoves;
+    }
+
+    public Character getColour() {
+        return colour;
+    }
 }
