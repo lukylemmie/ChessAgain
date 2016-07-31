@@ -10,5 +10,10 @@ public class TestBoard {
         Board board = new Board();
 
         board.printBoard();
+
+        System.out.println();
+        System.out.println();
+
+        board.printBoardWithNames();
     }
 }

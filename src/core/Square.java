@@ -37,7 +37,6 @@ public class Square {
     }
 
     public void printBoard(){
-//        System.out.print("|" + name);
         if(!boardEdge){
             if(piece == null){
                 System.out.print("|  ");
@@ -54,6 +53,19 @@ public class Square {
         }
         if(left == null && down != null){
             down.printBoard();
+        }
+    }
+
+    public void printBoardWithNames(){
+        System.out.print("|" + name);
+
+        if(right != null){
+            right.printBoardWithNames();
+        } else {
+            System.out.println("|");
+        }
+        if(left == null && down != null){
+            down.printBoardWithNames();
         }
     }
 

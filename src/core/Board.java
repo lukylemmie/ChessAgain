@@ -61,4 +61,8 @@ public class Board {
     public void printBoard(){
         topLeft.printBoard();
     }
+
+    public void printBoardWithNames() {
+        topLeft.printBoardWithNames();
+    }
 }
