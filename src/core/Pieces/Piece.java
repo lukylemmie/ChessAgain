@@ -2,6 +2,8 @@ package core.Pieces;
 
 import core.Square;
 
+import java.util.ArrayList;
+
 /**
  * Created by Andrew on 26/07/2016.
  */
@@ -18,8 +20,13 @@ public abstract class Piece {
         this.pieceId = pieceId;
     }
 
-
     public void print() {
         System.out.print(colour.toString() + pieceId.toString());
     }
+
+    public Square getSquare(){
+        return square;
+    }
+
+    public abstract ArrayList<String> validMoves(Square start);
 }

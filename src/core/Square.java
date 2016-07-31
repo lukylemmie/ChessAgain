@@ -2,9 +2,6 @@ package core;
 
 import core.Pieces.Piece;
 
-import java.util.ArrayList;
-import java.util.concurrent.SynchronousQueue;
-
 /**
  * Created by Andrew on 26/07/2016.
  */
@@ -69,6 +66,16 @@ public class Square {
         }
     }
 
+    public void clearValidMoves(){
+        validMove = false;
+        if(right != null){
+            right.clearValidMoves();
+        }
+        if(left == null && down != null){
+            down.clearValidMoves();
+        }
+    }
+
     public int getColour() {
         return colour;
     }
@@ -77,12 +84,20 @@ public class Square {
         this.colour = colour;
     }
 
-    public Boolean isBoardEdge() {
+    public Boolean getBoardEdge() {
         return boardEdge;
     }
 
-    public Boolean isValidMove() {
+    public String getName() {
+        return name;
+    }
+
+    public Boolean getValidMove() {
         return validMove;
+    }
+
+    public void validMove(){
+        validMove = true;
     }
 
     public void setValidMove(Boolean validMove) {
@@ -94,7 +109,31 @@ public class Square {
         return name;
     }
 
+    public Square getUp() {
+        return up;
+    }
+
+    public Square getDown() {
+        return down;
+    }
+
+    public Square getLeft() {
+        return left;
+    }
+
+    public Square getRight() {
+        return right;
+    }
+
+    public Piece getPiece() {
+        return piece;
+    }
+
     public void setPiece(Piece piece) {
         this.piece = piece;
+    }
+
+    public Boolean hasPiece(){
+        return piece != null;
     }
 }

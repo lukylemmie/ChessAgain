@@ -37,7 +37,7 @@ public class Board {
 
                 Square square = new Square(name, boardEdge);
                 grid[i][j] = square;
-                if(!square.isBoardEdge()){
+                if(!square.getBoardEdge()){
                     map.put(name, square);
                 }
             }
